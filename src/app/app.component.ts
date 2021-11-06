@@ -14,15 +14,38 @@ import { Component } from '@angular/core';
   styleUrls:['./app.component.scss'],
   //assaign the template in this particulr component. two way 1=inline template string with backastric`` 2= external file(with url) templateUrl:'./app.component.html'
   template: `
-    <div class="app"> 
-    Hellow!
-    {{title}}
+    
+
+    <div>
+    <!-- //interpolation -->
+    {{numberOne}}
+    {{numberTwo}}
+
+    <!-- //expression in interpolation -->
+    {{numberOne + numberTwo}}
     </div>
+
+    <!-- // user ternary expression -->
+    <div>
+    {{isHappy? ':)' : '):' }}
+    </div>
+
+    <!-- // concatenate both the string in iterpolation -->
+    <div>
+    {{title + '!'}}
+    </div>
+
   `
 })
 
 //import and export from the same file and here class name is a component which we are going to import in a app.module.ts
 export class AppComponent {
+
+  //interpolation
+  numberOne:number=1;
+  numberTwo:number=2;
+  isHappy:boolean=true;
+  
   title:string='AngularFandamental';
 }
 
@@ -31,3 +54,4 @@ export class AppComponent {
 // component just decarate a particular class (with @ decarator)=>@Component({})
 // the name of the component get exported =>export class AppComponent {}
 // and register this component with a module => 1=import { AppComponent } from './app.component'; 2=declarations:[AppComponent], 3=(only for root component) bootstrap:[AppComponent]
+
