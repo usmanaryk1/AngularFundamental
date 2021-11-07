@@ -14,39 +14,51 @@ import { Component } from '@angular/core';
   styleUrls:['./app.component.scss'],
   //assaign the template in this particulr component. two way 1=inline template string with backastric`` 2= external file(with url) templateUrl:'./app.component.html'
   template: `
+   
+    <!-- // property binding -->
+    <div>
     
-
-    <div>
-    <!-- //interpolation -->
-    {{numberOne}}
-    {{numberTwo}}
-
-    <!-- //expression in interpolation -->
-    {{numberOne + numberTwo}}
+    <!-- we use sugur syntex  means  in javascript Syntactic sugar means that the new features of the language are not really new. Instead, they are a nicer syntax for something existing/ You could do exactly the same by writing something different in the old version. like let a = b + c can have syntactic sugar as let a = b.Add(c) -->
+    <h1>{{title}}</h1>
+    
+    <!-- // in plane javaScript we may have access particular dom node and then element dot innerHTML = 'something', same we have in angular with property binding   -->
+    <!-- // we have sync capability in angular [innerHTML] like js, it will bind property innerHTML with title  -->
+    <!--// we use square bracket notation around the property name we want to bind to, its indicate one way data flow syntax -->
+    <!--// data come down to the class(see title), binds to the template([]="title"), looks the property([innerHTML]="") src and send it to html content -->
+    <!--// element.innerHTML="title" is equal to [innerHTML]="title" -->
+    <h1 [innerHTML]="title"></h1>
     </div>
-
-    <!-- // user ternary expression -->
+    
     <div>
-    {{isHappy? ':)' : '):' }}
-    </div>
+    
+    <!--// element.src="name.jpg" is equivalent in angular to [src]="logo" -->
+      <img [src]="logo" >
 
-    <!-- // concatenate both the string in iterpolation -->
-    <div>
-    {{title + '!'}}
+
+      <!--// here name dynamically show in input text field so original name down value will not change in ts means in js element.value="todd" same in angular like [value]="name' and name declear in ts with its intial string value which is show here-->
+      <input type="text" [value]="name">
+      <!--// here name will not change by writing in input text field because it is pure one way data binding ts to html -->
+      {{name}}
     </div>
 
   `
 })
 
+
+
 //import and export from the same file and here class name is a component which we are going to import in a app.module.ts
 export class AppComponent {
 
-  //interpolation
-  numberOne:number=1;
-  numberTwo:number=2;
-  isHappy:boolean=true;
+  //bind logo path with img src (property binding)
+  logo:string="assets/logo.jpg";
+
+  //bind the input initial value pure one way data binding see here with example ts to html
+  name:string="Tood"
   
-  title:string='AngularFandamental';
+  title:string;
+  constructor(){
+    this.title ='AngularFandamental';
+  }
 }
 
 //what are components?
