@@ -5,9 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 // for use directive we need common module
 import { CommonModule } from '@angular/common'
 
-//import FormModule for ngModule to use two way data binding 
-// two way data binding is okay when you have a local component however when you want to emiter change you should alwayes use one way data flow and emit that change with an event listner
-import { FormsModule } from '@angular/forms';
 
 //to register a component 1=inport it and 2=declear it in @NgModule({declarations:[ AppComponent, etc component], and 3=(only for root component) bootstrap it in @NgModule({  bootstrap:[AppComponent] })
 import { AppComponent } from './app.component';
@@ -21,7 +18,6 @@ import { AppComponent } from './app.component';
     //all module will be import here
     BrowserModule,
     CommonModule,
-    FormsModule,
 
   ],
   //to run our application (connection with main.ts)

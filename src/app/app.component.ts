@@ -15,26 +15,23 @@ import { Component } from '@angular/core';
   //assaign the template in this particulr component. two way 1=inline template string with backastric`` 2= external file(with url) templateUrl:'./app.component.html'
   template: `
    
-    <!-- // two way data binding -->
-    <!-- // two way data binding is two way data binding html to ts and then ts to html back its possible with [ngModel]="name" and (ngModelChange)="funcall($event)" or [(ngModel)]="name"-->
-    <!-- // for using [(ngModel)]="name" we need to import FormsModule in app.module.ts first-->
-    <!-- // we need to ng serve again after import FormsModule in app.module.ts -->
+    <!-- // #template Refrence -->
+    <!-- // #template Ref give us an access to the particular dom element its essentially exports the property so we can access anywhere else in our template using the #hash varuable  -->
+    <!-- // its a template side value binding reference variable-->
   
     <div>
-    <!-- // [value]="name" is equal to []="name" and (input)="handleChange($event)" is wqual to (ngModelChange)=""handleChange($event)" technically both are  one eay data bindings and two way data binding is [(ngModel)]="name"-->
+
+      <!--// its essentially allow us to create a reference in the dom node to the particular element which is accessible anywhere in our template -->
       <input 
       type="text" 
-      [ngModel]="name"
-      (ngModelChange)="handleChange($event)"
+      #userName
       >
 
-      <input 
-      type="text" 
-      [(ngModel)]="name"
-      >
-
+      {{name}}
+      
+      <!--//  button event binding-->
+      <button (click)="handleClick(userName.value)">click to pas temp ref variable value</button>
     </div>
-    {{name}}
 
   `
 })
@@ -47,15 +44,11 @@ export class AppComponent {
  
   //property[] bind in the input initial value pure one way data binding see here with example ts to html
   name:string="Tood"
-  
 
-  //whenever you write in input name value change with writing in input due to ngModuleChange which work like a (input) event
-  handleChange(value:any){
+  //each time we click we get a template reference variable value
+  handleClick(value:any){
     console.log(value);
-    //assaign the input value to the name variabel
-    this.name=value; 
   }
-
 }
 
 //what are components?
