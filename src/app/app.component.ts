@@ -15,24 +15,26 @@ import { Component } from '@angular/core';
   //assaign the template in this particulr component. two way 1=inline template string with backastric`` 2= external file(with url) templateUrl:'./app.component.html'
   template: `
    
-    <!-- // event binding -->
-    <!-- // event binding is one way data binding html to ts its fire a function on certain event such as (blur),(input),(click)="funcall()"-->
+    <!-- // two way data binding -->
+    <!-- // two way data binding is two way data binding html to ts and then ts to html back its possible with [ngModel]="name" and (ngModelChange)="funcall($event)" or [(ngModel)]="name"-->
+    <!-- // for using [(ngModel)]="name" we need to import FormsModule in app.module.ts first-->
+    <!-- // we need to ng serve again after import FormsModule in app.module.ts -->
   
     <div>
-
-      <!--// when a blur event fire we need to pass a function and pass $event in that we have diffrent properties target and value for this particulat element -->
+    <!-- // [value]="name" is equal to []="name" and (input)="handleChange($event)" is wqual to (ngModelChange)=""handleChange($event)" technically both are  one eay data bindings and two way data binding is [(ngModel)]="name"-->
       <input 
       type="text" 
-      [value]="name"
-      (blur)="handleBlur($event)"
-      (input)="handleInput($event)"
+      [ngModel]="name"
+      (ngModelChange)="handleChange($event)"
       >
 
-      {{name}}
-      
-      <!--//  button event binding-->
-      <button (click)="handleClick()">click to change name</button>
+      <input 
+      type="text" 
+      [(ngModel)]="name"
+      >
+
     </div>
+    {{name}}
 
   `
 })
@@ -45,25 +47,15 @@ export class AppComponent {
  
   //property[] bind in the input initial value pure one way data binding see here with example ts to html
   name:string="Tood"
-  // and event () binding is also one way data binding from html to ts here call a function on particular event
   
-  //its will change name value when click somewhere else after writing the input that value 
-  handleBlur(event:any){
-    console.log(event);
-    this.name="Motoo" 
-  }
 
-  //whenever you write in input name value change with writing in input 
-  handleInput(event:any){
-    console.log(event.target.value);
+  //whenever you write in input name value change with writing in input due to ngModuleChange which work like a (input) event
+  handleChange(value:any){
+    console.log(value);
     //assaign the input value to the name variabel
-    this.name=event.target.value; 
+    this.name=value; 
   }
 
-  //this will accour when click on button and button not need any $event pass
-  handleClick(){
-    this.name="Tood Motto"; 
-  }
 }
 
 //what are components?
