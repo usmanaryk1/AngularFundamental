@@ -15,23 +15,8 @@ import { Component } from '@angular/core';
   //assaign the template in this particulr component. two way 1=inline template string with backastric`` 2= external file(with url) templateUrl:'./app.component.html'
   template: `
    
-    <!-- // #template Refrence -->
-    <!-- // #template Ref give us an access to the particular dom element its essentially exports the property so we can access anywhere else in our template using the #hash varuable  -->
-    <!-- // its a template side value binding reference variable-->
+  <test-app></test-app> 
   
-    <div>
-
-      <!--// its essentially allow us to create a reference in the dom node to the particular element which is accessible anywhere in our template -->
-      <input 
-      type="text" 
-      #userName
-      >
-
-      {{name}}
-      
-      <!--//  button event binding-->
-      <button (click)="handleClick(userName.value)">click to pas temp ref variable value</button>
-    </div>
 
   `
 })
@@ -43,13 +28,37 @@ export class AppComponent {
 
  
   //property[] bind in the input initial value pure one way data binding see here with example ts to html
-  name:string="Tood"
+  name: string= 'gggg';
 
   //each time we click we get a template reference variable value
-  handleClick(value:any){
-    console.log(value);
+  handleChanges(value: any){
+    this.name=value.target.value;
+    console.log(value.target.value);
   }
+
+  //class is not working 
+  // class shopinglist2{
+  //   groseries:string[];
+  //   constructor(){
+  //     this.groseries=[];
+  //   }
+  //   additem(item:any){
+  //     this.groseries = [...this.groseries, item]
+  //   }
+  //   removeitem(item:any){
+  //     this.groseries= this.groseries.filter((grosery)=> item !== grosery)
+  //   }
+
+  // }
+  //  const newitem= new shopinglist2();
+
+  //  newitem.additem('ahmed');
+  //  console.log(newitem)
+
+  
+
 }
+
 
 //what are components?
 // we import it from angular/core => import { Component } from '@angular/core';
