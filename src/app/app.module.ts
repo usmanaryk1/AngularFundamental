@@ -9,8 +9,11 @@ import { CommonModule } from '@angular/common'
 //to register a component 1=inport it and 2=declear it in @NgModule({declarations:[ AppComponent, etc component], and 3=(only for root component) bootstrap it in @NgModule({  bootstrap:[AppComponent] })
 import { AppComponent } from './app.component';
 
+//custom module
+import { PassengerDashboardModule } from './passenger-dashboard/passenger-dashboard.module';
 
-import { testModule } from '../directives_ngStyle_ngClass_pipes_safeNavigation/test.module'
+
+
 @NgModule({
   declarations:[
     //all component will be declear here
@@ -25,7 +28,7 @@ import { testModule } from '../directives_ngStyle_ngClass_pipes_safeNavigation/t
 
 
     //custom module
-    testModule,
+    PassengerDashboardModule
 
   ],
   //to run our application (connection with main.ts)
