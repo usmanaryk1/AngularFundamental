@@ -12,7 +12,8 @@ import { AppComponent } from './app.component';
 //custom module
 import { PassengerDashboardModule } from './passenger-dashboard/passenger-dashboard.module';
 
-
+//baseUrls
+export const baseUrl ="http://localhost:3000"
 
 @NgModule({
   declarations:[
@@ -30,6 +31,9 @@ import { PassengerDashboardModule } from './passenger-dashboard/passenger-dashbo
     //custom module
     PassengerDashboardModule
 
+  ],
+  providers:[
+    {provide:'BaseURL',useValue: baseUrl}
   ],
   //to run our application (connection with main.ts)
   bootstrap:[AppComponent]

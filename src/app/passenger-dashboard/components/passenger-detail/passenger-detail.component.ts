@@ -59,7 +59,7 @@ export class PassengerDetailComponent implements OnChanges{
         if(changes.detail){
             this.detail=Object.assign({},changes.detail.currentValue)
         }
-        console.log(changes);//show previous and current value of changes   
+        // console.log(changes);//show previous and current value of changes   
     }
     
     OnNameChange(value:string){

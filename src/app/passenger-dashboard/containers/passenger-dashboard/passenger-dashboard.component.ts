@@ -1,5 +1,6 @@
 import { Component , OnInit } from '@angular/core'
 import { Passenger } from '../../models/passenger.interface';
+import { PassengerDashboardService } from '../../passenger-dashboard.service';
 
 @Component({
     selector:'passenger-dashboard',
@@ -38,60 +39,47 @@ export class PassengerDashboardComponent implements OnInit{
     
     passengers:Passenger[]=[]//strict initializing;
     
-    constructor(){}
+    constructor(private passengerDashboardService:PassengerDashboardService){}
     ngOnInit(){
         console.log("ngOnInit");
+        // this.passengers= this.passengerDashboardService.getPassengers();
+        // console.log("this.passengers",this.passengers);
+        this.passengerDashboardService.getPassengers()
+        .subscribe((data:Passenger[])=> {
+            this.passengers= data
+            console.log("this.passengers",this.passengers);
+        })
         
-    this.passengers=[{
-        id: 1,
-        fullname: 'Stephen',
-        checkedIn: true,
-        checkInDate: 1490742000000,
-        children: null
-      }, {
-        id: 2,
-        fullname: 'Rose',
-        checkedIn: false,
-        checkInDate: null,
-        children: [{ name: 'Ted', age: 12 },{ name: 'Chloe', age: 7 }]
-      }, {
-        id: 3,
-        fullname: 'James',
-        checkedIn: true,
-        checkInDate: 1491606000000,
-        children: null
-      }, {
-        id: 4,
-        fullname: 'Louise',
-        checkedIn: true,
-        checkInDate: 1488412800000,
-        children: [{ name: 'Jessica', age: 1 }]
-      }, {
-        id: 5,
-        fullname: 'Tina',
-        checkedIn: false,
-        checkInDate: null,
-        children: null
-      }];
     }
 
     handleEdit(event:Passenger){
         console.log("edit event",event);
-        this.passengers= this.passengers.map((passenger:Passenger)=>{
+        this.passengerDashboardService.putPassengers(event)
+        .subscribe((data:Passenger)=>{
+             //if our request were successful then we update our api
+            this.passengers= this.passengers.map((passenger:Passenger)=>{
             if(passenger.id === event.id){
-                console.log("Object.assign({},passenger,event)",Object.assign({},passenger,event));
+                // console.log("Object.assign({},passenger,event)",Object.assign({},passenger,event));
                 passenger=Object.assign({},passenger,event)//what assign do, is merging those changing accross(merge changing old passenger object to new event object)
             }
             return passenger;
+            })
         })
+       
         console.log(this.passengers);//we cant see the changing because our browser changing localay ao we need to see our changing in console.log
         
     }
     handleRemove(event:Passenger){
         console.log("remove event",event);
-        this.passengers= this.passengers.filter((passenger:Passenger)=>{
-            return passenger.id !== event.id//not return that particular passenger which we wana remove and assign new filter array to this.passengers again
+        this.passengerDashboardService.removePassengers(event)
+        .subscribe((data:Passenger)=>{
+            //without this logic not update browser i think because get methood not subscribe again
+            this.passengers= this.passengers.filter((passenger:Passenger)=>{
+                return passenger.id !== event.id//not return that particular passenger which we wana remove and assign new filter array to this.passengers again
+            })
+
         })
+        
         
     }
 
