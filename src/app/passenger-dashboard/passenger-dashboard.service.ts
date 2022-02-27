@@ -31,6 +31,21 @@ export class PassengerDashboardService{
         }))
     }
 
+    getPassenger(id:number):Observable<any>{
+        return this.http
+        // .get("http://localhost:3000/passengers")//working
+        // .get( api +"/passengers")//working //const api ="http://localhost:3000"
+        .get( baseUrl +'/passengers/'+ id)//working
+        .pipe(
+        // map((response)=> response))
+            // catchError(this.errorhandle))
+            //or
+        catchError(error=> {
+            //console.log("eoeoeoeoeoeoerrrr",error);   
+            return throwError(error)
+        }))
+    }
+
     putPassengers(passenger:Passenger):Observable<any>{
         //header is not need for our application but for other may be need so we see how to create custom header 
         const header= new HttpHeaders({

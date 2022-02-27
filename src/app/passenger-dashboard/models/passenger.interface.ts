@@ -1,13 +1,9 @@
-export interface Child {
-    name: string,
-    age: number
-  }
-  
+
   export interface Passenger {
     id: number,
     fullname: string,
     checkedIn: boolean,
-    checkInDate: number | null,
-    children: Child[] | null
+    checkInDate?: number, // | null, =>angular not set a null value in template driven form) so make it optional with ?
+    baggage: string
   }
 
