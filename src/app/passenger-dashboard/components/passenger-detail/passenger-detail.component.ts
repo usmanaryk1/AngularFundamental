@@ -31,6 +31,11 @@ import { Passenger } from '../../models/passenger.interface';
     Remove
     </button>
 
+    <!-- to go to individual passenger either use routerLink or imparative routing because detail component is stateless so we will use imparative route from its parent component by output event from here to parrent component passenger-dashboard.component-->
+    <button (click)="goToPassenger()">
+    View
+    </button>
+
 
 
     </div>
@@ -48,6 +53,9 @@ export class PassengerDetailComponent implements OnChanges{
 
     @Output()
     remove:EventEmitter<any>= new EventEmitter();
+
+    @Output()
+    view:EventEmitter<any>= new EventEmitter();
 
     //if not use then when name is editing in parrent component instantally changing as typing name (see yourself by adding ngFor in parrent and comment ngOnChanging and see instantily name change when typing)so ngOnChanging comes in handy now changing will not go to parrent untill fully changed the name and until clicked on done. so make a logic in ngOnChanging
     // and its render before the ngOnInit 
@@ -75,6 +83,12 @@ export class PassengerDetailComponent implements OnChanges{
     onRemove(){
         console.log("removing",this.detail);//only clicked item will get because this.detail has only one passenger each time when *ngFor come from parent <passenger-dashboard> to in this <passenger-detail *ngFor>
         this.remove.emit(this.detail)//now go to parent and set event comes from child and call a method (remove)="handleRemove($event)"
+        
+    }
+
+    goToPassenger(){
+        console.log("wiew",this.detail);
+        this.view.emit(this.detail)//now go to parent and set event comes from child and call a method (view)="handleView($event)" in passenger-dashboard.component.ts
         
     }
 

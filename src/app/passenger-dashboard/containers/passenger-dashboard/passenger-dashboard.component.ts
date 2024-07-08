@@ -1,7 +1,8 @@
 import { Component , OnInit } from '@angular/core'
 import { Passenger } from '../../models/passenger.interface';
 import { PassengerDashboardService } from '../../passenger-dashboard.service';
-
+//for imparative routing
+import { Router } from '@angular/router';
 @Component({
     selector:'passenger-dashboard',
     styleUrls:['passenger-dashboard.component.scss'],
@@ -26,6 +27,7 @@ import { PassengerDashboardService } from '../../passenger-dashboard.service';
     [detail]="passenger"
     (edit)="handleEdit($event)"
     (remove)="handleRemove($event)"
+    (view)="handleView($event)"
     >
     </passenger-detail>
 
@@ -39,7 +41,8 @@ export class PassengerDashboardComponent implements OnInit{
     
     passengers:Passenger[]=[]//strict initializing;
     
-    constructor(private passengerDashboardService:PassengerDashboardService){}
+    constructor(private passengerDashboardService:PassengerDashboardService,
+        private router:Router){}
     ngOnInit(){
         console.log("ngOnInit");
         // this.passengers= this.passengerDashboardService.getPassengers();
@@ -81,6 +84,12 @@ export class PassengerDashboardComponent implements OnInit{
         })
         
         
+    }
+    handleView(event:Passenger){
+        console.log("view event",event);
+        //we are going to use dynamic imparative routing for indivigual passenger id
+        // pass function argument as parameters
+        this.router.navigate(['/passengers/', event.id])
     }
 
 }
