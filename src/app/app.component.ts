@@ -15,7 +15,8 @@ import { Component } from '@angular/core';
   //assaign the template in this particulr component. two way 1=inline template string with backastric`` 2= external file(with url) templateUrl:'./app.component.html'
   template: `
    
-  <test-app></test-app> 
+  <display-binding></display-binding>
+  <rendering-flow-directives></rendering-flow-directives>
   
 
   `

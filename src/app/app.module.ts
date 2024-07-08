@@ -9,12 +9,15 @@ import { CommonModule } from '@angular/common'
 //to register a component 1=inport it and 2=declear it in @NgModule({declarations:[ AppComponent, etc component], and 3=(only for root component) bootstrap it in @NgModule({  bootstrap:[AppComponent] })
 import { AppComponent } from './app.component';
 
-
+//custom module
 import { testModule } from '../directives_ngStyle_ngClass_pipes_safeNavigation/test.module'
+import { renderFlowModule } from './directives3_bindings4_pipes_safeNavigation/rendering-flow.module';
+import { templateBindingModule } from './directives3_bindings4_pipes_safeNavigation/container/bindings/template-fundamental.module';
 @NgModule({
   declarations:[
     //all component will be declear here
     AppComponent,
+    
    
   ],
   imports:[
@@ -25,6 +28,8 @@ import { testModule } from '../directives_ngStyle_ngClass_pipes_safeNavigation/t
 
 
     //custom module
+    renderFlowModule,
+    templateBindingModule,
     testModule,
 
   ],
