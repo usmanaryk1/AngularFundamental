@@ -10,9 +10,10 @@ import { CommonModule } from '@angular/common'
 import { AppComponent } from './app.component';
 
 //custom module
-import { testModule } from '../directives_ngStyle_ngClass_pipes_safeNavigation/test.module'
-import { renderFlowModule } from './directives3_bindings4_pipes_safeNavigation/rendering-flow.module';
-import { templateBindingModule } from './directives3_bindings4_pipes_safeNavigation/container/bindings/template-fundamental.module';
+import { PassengerDashboardModule } from './passenger-dashboard/passenger-dashboard.module';
+
+
+
 @NgModule({
   declarations:[
     //all component will be declear here
@@ -28,9 +29,7 @@ import { templateBindingModule } from './directives3_bindings4_pipes_safeNavigat
 
 
     //custom module
-    renderFlowModule,
-    templateBindingModule,
-    testModule,
+    PassengerDashboardModule
 
   ],
   //to run our application (connection with main.ts)
